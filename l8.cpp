@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : L7.cpp
+ Name        : L8.cpp
  Author      : Jacob Bracey
  Description : ECE 3220: Lab 7
  ============================================================================
@@ -55,6 +55,8 @@ void MSGSt::push(MSG obj){
 
 void MSGSt::pop(){
 	delete ptrSt[st_top_ptr];
+	st_top_ptr--;
+
 }
 
 
