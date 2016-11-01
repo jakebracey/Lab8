@@ -12,7 +12,7 @@
 #include <string.h>
 #include <iostream>
 #include <cstring>
-
+#include <string>
 
 using namespace std;
 
@@ -24,17 +24,36 @@ class MSG{
 		MSG();
 		MSG(string);
 		~MSG();
-		virtual void printInfo();
+		void printInfo();
 };
+
+MSG::~MSG(){
+}
+
+MSG::MSG()
+{
+	msg="heLLo";
+}
+
+MSG::MSG(string x)
+{
+	msg=x;
+}
+
 
 class mcMSG : public MSG{
 	public:
-		string * tran_msg;
+		string tran_msg[20];
 		int index;
-		void printInfo();
+		void printmcInfo();
 		void translate();
-	
+		mcMSG(string);
 };
+
+mcMSG::mcMSG(string x)
+{
+	msg=x;
+}
 
 class MSGSt{
 	public:
@@ -47,6 +66,63 @@ class MSGSt{
 		void pop();
 		void printStack();
 };
+
+void MSG::printInfo()
+{
+	cout << msg << endl;
+}
+
+void mcMSG::printmcInfo(){
+	int i=0;
+
+	if(index>20)
+	{
+		return;
+	}
+
+	for(i=0; i<index; i++)
+	{
+		cout << tran_msg[i] << " ";
+	}
+	cout << endl;
+}
+
+void mcMSG::translate(){
+	string letters="abcdefghijklmnopqrstuvwxyz";
+	string morseCode[] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
+		   "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-",
+		   "..-","...-",".--","-..-","-.--","--.."};
+	int i=0;
+	int j=0;
+	string c;
+	char u;
+
+	index = msg.length();
+
+	if(index>20)
+	{
+		cout << "Message is too long" << endl;
+		return;
+	}
+
+	for(i=0; i<index; i++)
+	{
+		if(isupper(msg[i]))
+		{
+			u=msg[i];
+			msg[i]=tolower(u);
+		}
+
+		for(j=0; j<26; j++){
+			if(msg[i]==letters[j])
+			{
+				c=morseCode[j];
+				//cout << c << endl;
+				tran_msg[i]=c;
+			}
+		}
+	}
+}
 
 void MSGSt::push(MSG obj){
 	ptrSt[st_top_ptr]=new MSG(obj);
@@ -61,10 +137,15 @@ void MSGSt::pop(){
 
 
 int main(void){
-	
 	//put these into the translate function
-	string letters="abcdefghijklmnopqrstuvwxyz"
-	string morseCode[]={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
-	       "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-",
-	       "..-","...-",".--","-..-","-.--","--.."};
+	//mcMSG mcmessage;
+	string str;
+	cout << "Enter a word to convert to morse (fewer than 20 characters): ";
+	cin >> str;
+	mcMSG mcmessage(str);
+	mcmessage.printInfo();
+	mcmessage.translate();
+	mcmessage.printmcInfo();
+
+	return 0;
 }
