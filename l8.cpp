@@ -43,7 +43,7 @@ MSG::MSG(string x)
 
 class mcMSG : public MSG{
 	public:
-		string tran_msg[20];
+		string tran_msg[26];
 		int index;
 		void printmcInfo();
 		void translate();
@@ -75,7 +75,7 @@ void MSG::printInfo()
 void mcMSG::printmcInfo(){
 	int i=0;
 
-	if(index>20)
+	if(index>26)
 	{
 		return;
 	}
@@ -99,7 +99,7 @@ void mcMSG::translate(){
 
 	index = msg.length();
 
-	if(index>20)
+	if(index>26)
 	{
 		cout << "Message is too long" << endl;
 		return;
@@ -146,6 +146,5 @@ int main(void){
 	mcmessage.printInfo();
 	mcmessage.translate();
 	mcmessage.printmcInfo();
-
 	return 0;
 }
