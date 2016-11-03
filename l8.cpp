@@ -165,6 +165,12 @@ void MSGSt::pop(){ //pops word from stack
 int main(void){
 	MSGSt stackmsgs;
 	
+	//prints out an empty stack
+	cout<<endl<<"Printing out the stack\n";
+	stackmsgs.printStack();
+	cout<<endl<<"--------------------------------------"<<endl;
+	
+	
 	//gets a string from the user
 	string str,str2;
 	cout << "Enter a word to convert to morse code: "; //takes in word to convert
@@ -173,7 +179,12 @@ int main(void){
 	//puts str into the morse code message class
 	mcMSG m1(str);
 	m1.printInfo();//prints out data
+	
 	//stackmsgs.push(m1);//pushes this onto the stack
+	cout<<endl<<"Printing out the stack\n";
+	stackmsgs.printStack();
+	cout<<endl<<"--------------------------------------"<<endl;
+
 	
 	
 	//gets another string from the user
@@ -190,6 +201,13 @@ int main(void){
 	stackmsgs.printStack();
 	stackmsgs.pop();
 	stackmsgs.pop();
+	cout<<endl<<"--------------------------------------"<<endl;
+
+
+//prints out an empty stack
+	cout<<endl<<"Printing out the stack\n";
+	stackmsgs.printStack();
+	cout<<endl<<"--------------------------------------"<<endl;	
 	
 	
 	return 0;
